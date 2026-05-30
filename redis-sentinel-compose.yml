@@ -1,0 +1,45 @@
+services:
+
+  primary:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+  replica:
+    image: redis:7
+    command: redis-server --replicaof primary 6379
+    ports:
+      - "6380:6379"
+
+  sentinel1:
+    image: redis:7
+    command: redis-sentinel /etc/sentinel.conf
+    volumes:
+      - ./sentinel.conf:/etc/sentinel.conf
+    depends_on:
+      - primary
+      - replica
+    ports:
+      - "26379:26379"
+
+  sentinel2:
+    image: redis:7
+    command: redis-sentinel /etc/sentinel.conf
+    volumes:
+      - ./sentinel.conf:/etc/sentinel.conf
+    depends_on:
+      - primary
+      - replica
+    ports:
+      - "26380:26379"
+
+  sentinel3:
+    image: redis:7
+    command: redis-sentinel /etc/sentinel.conf
+    volumes:
+      - ./sentinel.conf:/etc/sentinel.conf
+    depends_on:
+      - primary
+      - replica
+    ports:
+      - "26381:26379"

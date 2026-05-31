@@ -1,3 +1,7 @@
+# For archives only. This file is not currently in use. 
+
+# docker compose -f ./redis-compose.yml up
+
 services:
   redis:
     image: redis:7

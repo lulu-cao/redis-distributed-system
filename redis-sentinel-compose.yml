@@ -1,45 +1,77 @@
-services:
+# docker compose -f ./redis-sentinel-compose.yml up
 
+services:
   primary:
     image: redis:7
+    container_name: redis-primary
     ports:
       - "6379:6379"
+    networks:
+      redis-net:
+        ipv4_address: 172.99.0.10
 
   replica:
     image: redis:7
-    command: redis-server --replicaof primary 6379
+    container_name: redis-replica
+    # Connect directly to the master's static IP
+    command: redis-server --replicaof 172.99.0.10 6379
     ports:
       - "6380:6379"
+    networks:
+      redis-net:
+        ipv4_address: 172.99.0.11
+    depends_on:
+      - primary
 
   sentinel1:
     image: redis:7
+    container_name: sentinel1
     command: redis-sentinel /etc/sentinel.conf
     volumes:
       - ./sentinel.conf:/etc/sentinel.conf
+    ports:
+      - "26379:26379"
+    networks:
+      redis-net:
+        ipv4_address: 172.99.0.21
     depends_on:
       - primary
       - replica
-    ports:
-      - "26379:26379"
 
   sentinel2:
     image: redis:7
+    container_name: sentinel2
     command: redis-sentinel /etc/sentinel.conf
     volumes:
       - ./sentinel.conf:/etc/sentinel.conf
+    ports:
+      - "26380:26379"
+    networks:
+      redis-net:
+        ipv4_address: 172.99.0.22
     depends_on:
       - primary
       - replica
-    ports:
-      - "26380:26379"
 
   sentinel3:
     image: redis:7
+    container_name: sentinel3
     command: redis-sentinel /etc/sentinel.conf
     volumes:
       - ./sentinel.conf:/etc/sentinel.conf
+    ports:
+      - "26381:26379"
+    networks:
+      redis-net:
+        ipv4_address: 172.99.0.23
     depends_on:
       - primary
       - replica
-    ports:
-      - "26381:26379"
+
+# Define the custom bridge network layout
+networks:
+  redis-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.99.0.0/16

@@ -1,6 +1,6 @@
-The exercises below are ordered so each one builds on the previous one and maps to concepts from *Designing Data-Intensive Applications*.
-
 # Learning Goals
+
+The below exercises are designed to help you get familiar with concepts from *Designing Data-Intensive Applications* in a concrete way. They use Redis and related services to simulate the successes and failures of distributed systems. 
 
 By the end, you'll have experienced:
 
@@ -15,6 +15,8 @@ By the end, you'll have experienced:
 * Eventual consistency
 * Data loss
 * CAP theorem tradeoffs
+
+A final challenge is available in [FINAL_CHALLENGE.md](./FINAL_CHALLENGE.md).
 
 ---
 
@@ -437,57 +439,3 @@ Questions:
 * What happens during partitions?
 
 This is one of the most famous distributed-systems debates.
-
----
-
-# Lab 11: Build a Mini Distributed Application
-
-Create:
-
-```text
-API Server A
-API Server B
-Redis Primary
-Redis Replica
-Sentinels
-```
-
-Features:
-
-* user profiles
-* counters
-* locks
-
-Then deliberately:
-
-* kill nodes
-* restart nodes
-* partition networks
-
-Observe behavior.
-
----
-
-# Final Challenge
-
-Build a simple ticket reservation system:
-
-```text
-100 tickets available
-```
-
-Requirements:
-
-* no double booking
-* survive node failures
-* support concurrent users
-
-Questions you'll encounter:
-
-* Where should writes go?
-* Can reads use replicas?
-* How do you lock tickets?
-* What happens during failover?
-* Can data be lost?
-
-By the time you finish this project, many of the abstract ideas from DDIA—replication, consensus, leader election, consistency, availability, and fault tolerance—stop being theoretical and become concrete engineering tradeoffs you've experienced firsthand.

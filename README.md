@@ -1,6 +1,6 @@
 # Learning Goals
 
-The below exercises are designed to help you get familiar with concepts from *Designing Data-Intensive Applications* in a concrete way. They use Redis and related services to simulate the successes and failures of distributed systems. 
+The below exercises are designed to help you get familiar with concepts from *[Designing Data-Intensive Applications](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/)* in a concrete way. They use Redis and related services to simulate the successes and failures of distributed systems. You can find the solutions in the rest of this repo.
 
 By the end, you'll have experienced:
 
@@ -16,7 +16,16 @@ By the end, you'll have experienced:
 * Data loss
 * CAP theorem tradeoffs
 
-A final challenge is available in [FINAL_CHALLENGE.md](./FINAL_CHALLENGE.md).
+A final challenge is available in [FINAL_CHALLENGE.md](./FINAL_CHALLENGE.md). You can find one example solution at the [blog-nestjs](https://github.com/dkellycollins/lulu-cao-collab/pull/4) repo.
+
+## Prerequisites
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- Install [Redis Insight](https://redis.io/insight/) (Optional)
+- Basic knowledge with [Redis](https://redis.io/) and [Redis Sentinel](https://redis.io/tutorials/operate/redis-at-scale/high-availability/) is recommended, but not required
+
+## Disclaimer and Credits
+
+The exercises are designed by ChatGPT. This repo is the capstone project of a reading group on *[Designing Data-Intensive Applications](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/)*. The solutions provided in this repo are collaborative results between [Nate Mahalingam](https://github.com/nate-mahalingam) and [Lulu Cao](https://github.com/lulu-cao).
 
 ---
 
